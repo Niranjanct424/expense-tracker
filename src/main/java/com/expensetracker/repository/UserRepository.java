@@ -1,13 +1,13 @@
 package com.expensetracker.repository;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import com.expensetracker.entity.UserEntity;
+import com.expensetracker.entity.User;
 
-@Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
+	
+	 boolean existsByUsername(String username);
 
-	UserEntity findByUsername(String username);
-
+	    boolean existsByEmail(String email);
+	    
+    // Add custom query methods if needed
 }
