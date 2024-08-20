@@ -6,6 +6,7 @@ import com.expensetracker.entity.User;
 import com.expensetracker.repository.UserRepository;
 import com.expensetracker.request.UserRegistrationRequest;
 import com.expensetracker.response.CreateExpenseResponse;
+import com.expensetracker.response.CreateRegistrationResponse;
 
 @Service
 public class RegistrationService {
@@ -24,24 +25,24 @@ public class RegistrationService {
         this.userRepository = userRepository;
     }
 
-    public CreateExpenseResponse registerUser(UserRegistrationRequest registrationRequest) {
-        // Check if the username or email is already registered
-        if (userRepository.existsByUsername(registrationRequest.getUsername()) ||
-            userRepository.existsByEmail(registrationRequest.getEmail())) {
-            return CreateExpenseResponse.builder().success(false).message("Username or email already exists.").build();
-        }
-
-        // Create a new User entity and set the attributes
-        User newUser = new User();
-        newUser.setUsername(registrationRequest.getUsername());
-//      newUser.setPasswordHash(passwordEncoder.encode(registrationRequest.getPassword()));
-        newUser.setPasswordHash(registrationRequest.getPassword());
-        newUser.setFullName(registrationRequest.getFullName());
-        newUser.setEmail(registrationRequest.getEmail());
-
-        // Save the new user to the database
-        userRepository.save(newUser);
-
-        return CreateExpenseResponse.builder().success(true).message("Registration successful!").build();
-    }
+//    public CreateExpenseResponse registerUser(UserRegistrationRequest registrationRequest) {
+//        // Check if the username or email is already registered
+//        if (userRepository.existsByUsername(registrationRequest.getUsername()) ||
+//            userRepository.existsByEmail(registrationRequest.getEmail())) {
+//            return CreateRegistrationResponse.builder().status(false).message("Username or email already exists.").build();
+//        }
+//
+//        // Create a new User entity and set the attributes
+//        User newUser = new User();
+//        newUser.setUsername(registrationRequest.getUsername());
+////      newUser.setPasswordHash(passwordEncoder.encode(registrationRequest.getPassword()));
+//        newUser.setPasswordHash(registrationRequest.getPassword());
+//        newUser.setFullName(registrationRequest.getFullName());
+//        newUser.setEmail(registrationRequest.getEmail());
+//
+//        // Save the new user to the database
+//        userRepository.save(newUser);
+//
+//        return CreateRegistrationResponse.builder().success(true).message("Registration successful!").build();
+//    }
 }

@@ -17,8 +17,6 @@ public class RegistrationController {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest registrationRequest) {
@@ -31,7 +29,6 @@ public class RegistrationController {
         // Create a new User entity and set the attributes
         User newUser = new User();
         newUser.setUsername(registrationRequest.getUsername());
-//        newUser.setPasswordHash(passwordEncoder.encode(registrationRequest.getPassword()));
         newUser.setPasswordHash(registrationRequest.getPassword());
         newUser.setFullName(registrationRequest.getFullName());
         newUser.setEmail(registrationRequest.getEmail());
